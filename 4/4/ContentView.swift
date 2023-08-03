@@ -120,14 +120,14 @@ struct SignUpView : View {
     }
 }
 
-struct HobbieData : Identifiable  {
+struct SportsData : Identifiable  {
     var id: UUID = UUID()
     let name : String
     let imageURL :URL?
 }
 
 struct HobbiesView: View {
-    let data : HobbieData
+    let data :SportsData
     var body: some View {
         HStack {
             NavigationLink(
@@ -179,27 +179,27 @@ struct HobbiesView: View {
     }
 }
 
-func makeHobbieData() -> Array<HobbieData> {
-    let hobbieData = hobbiesList.map { hobbie in
-        HobbieData(name: hobbie, imageURL:
+func makeSportsData() -> Array<SportsData> {
+    let sportsdata = sportsList.map { sports in
+        SportsData(name: sports, imageURL:
                     
-                    URL(string: "https://source.unsplash.com/200x200/?\(hobbie)"))
+                    URL(string: "https://source.unsplash.com/200x200/?\(sports)"))
     }
     
-    return hobbieData
+    return sportsdata
 }
 
 
 struct ContentView: View {
-    let hobbiesData : Array<HobbieData> = makeHobbieData()
+    let hobbiesData : Array<SportsData> = makeSportsData()
     
     var body: some View {
         NavigationView {
             VStack {
-                List(hobbiesData) { hobbies in
-                    HobbiesView(data: hobbies)
+                List(SportsData) { hobbies in
+                   sportsview(data: sports)
                 }
-            } .navigationTitle("hobbies")
+            } .navigationTitle("sports")
         }
     }
     
@@ -209,7 +209,7 @@ struct ContentView: View {
                 TabView {
                     ContentView()
                         .tabItem{
-                            Label("hobbies" , systemImage : "doc")
+                            Label("sports" , systemImage : "doc")
                         }
                     
                     SignUpView()
@@ -222,28 +222,20 @@ struct ContentView: View {
         }
     }
 }
-let hobbiesList : Array<String> = """
-3D printing
-Acroyoga
-Acting
-Alternate history
-Amateur chemistry
-Amateur radio
-Animation
-Anime
-Art
-Baton twirling
-Beatboxing
-Beer tasting
-Bell ringing
-Binge watching
-Bird watching
-Blacksmith
-Blogging
-Bonsai
-Board/tabletop games
-Book discussion clubs
-Book restoration
-Bowling
+let sportsList : Array<String> = """
+Breakdancing
+Competitive dancing
+Cheerleading
+Dancesport
+Dragon dance and Lion dance
+Figure skating
+Freerunning
+Gymnastics
+High kick
+Parkour
+Pole sports
+Stunt
+Trampolining
+Color guard
 """
     .components(separatedBy: "\n")
